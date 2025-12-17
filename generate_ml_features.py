@@ -316,7 +316,7 @@ def calculate_label(df):
 # FİLTRE HESAPLAMA
 # ============================================
 
-def calculate_all_filters(df, config):
+def calculate_all_filters(df, config, is_inference=False):
     """Tüm filtreleri hesapla ve eğimlerini ekle"""
     
     df = df.copy()
@@ -393,8 +393,14 @@ def calculate_all_filters(df, config):
     # warmup_bars (300) zaten 3 günlük lag'i (3) fazlasıyla kapsıyor.
     warmup_bars = config['warmup_bars']
     
-    # Hem warmup kısmını atıyoruz hem de son 3 satırı (Target NaN olduğu için) atıyoruz
-    df_output = df.iloc[warmup_bars:-3].copy()
+    if is_inference:
+        # Inference modunda son satırları silmiyoruz (Tahmin yapacağız)
+        # Sadece warm-up kısmını atıyoruz
+        df_output = df.iloc[warmup_bars:].copy()
+    else:
+        # Eğitim modunda Target olmayan son 3 satırı atıyoruz
+        # Hem warmup kısmını atıyoruz hem de son 3 satırı
+        df_output = df.iloc[warmup_bars:-3].copy()
     
     # ÇIKTI KOLONLARI
     output_columns = [
