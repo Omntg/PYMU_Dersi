@@ -1,4 +1,4 @@
-[README.md](https://github.com/user-attachments/files/24223735/README.md)
+
 # 📈 BIST Hisse Senedi Trend Tahmin & AutoML Sistemi
 
 Bu proje, **Borsa İstanbul (BIST)** verilerini kullanarak teknik analiz indikatörleri ve makine öğrenmesi (AutoML) modelleri ile hisse senedi trendlerini tahmin eden kapsamlı bir sistemdir.
