@@ -4,7 +4,7 @@ import pandas as pd
 
 # Hisse listesi
 symbols = ['MAVI', 'EKGYO', 'TRGYO', 'RYSAS', 'BIMAS', 'GARAN', 'ENKAI', 'KCHOL', 'TUPRS', 'ASELS', 'MPARK', 'THYAO', 'EREGL'
-]  #'TUPRS', 'THYAO', 'ENKAI', 'SAHOL', 'GARAN', 'ASELS', 'EREGL', 'BIMAS'
+] 
 
 # Tarih aralığı (son 5 yıl)
 today = datetime.date.today()
