@@ -110,7 +110,15 @@ def create_web_report():
         # Sinyaller
         v2_filt = apply_filter(stock_df['V2_Signal'], stock_df['V2_Score'], CONFIDENCE_THRESHOLD)
         v3_filt = apply_filter(stock_df['V3_Signal'], stock_df['V3_Score'], CONFIDENCE_THRESHOLD)
-        real_sig = stock_df['GERCEKLESEN'].fillna(0).astype(int).tolist()
+        
+        # GERCEKLESEN (Eski) veya Current_Trend (Yeni) kolonunu kullan
+        if 'GERCEKLESEN' in stock_df.columns:
+            real_sig = stock_df['GERCEKLESEN'].fillna(0).astype(int).tolist()
+        elif 'Current_Trend' in stock_df.columns:
+            real_sig = stock_df['Current_Trend'].fillna(0).astype(int).tolist()
+        else:
+            # Eğer ikisi de yoksa (örn. sadece tahmin için üretilmiş veride)
+            real_sig = [0] * len(stock_df)
         
         # Grafik Verisi
         data = {
